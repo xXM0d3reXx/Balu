@@ -6,9 +6,9 @@ const {
     MessageEmbed
 } = require("discord.js");
 module.exports = {
-    name: 'test',
-    description: 'test command',
-    usage: "test command",
+    name: 'msglb',
+    description: 'Lese die Top 12 aus.',
+    usage: '#msglb <Seite>',
     execute: async (client, message, args, prefix, Discord) => {
         try {
             guildSchema.find({}, async (err, data) => {
