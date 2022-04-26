@@ -1,1008 +1,141 @@
-const gbschema = require('../../models/gb-schema');
-const {
-    MessageEmbed
-} = require("discord.js");
-
+const birthdaySchema = require("../../models/gb-schema");
+const { MessageEmbed } = require("discord.js");
 module.exports = {
-    name: 'gbset',
-    description: 'Fügt dich zum Geburtstags System hinzu',
-    usage: '#gbset tag monat',
+    name: "gbset",
+    description: "Fügt dich zum Geburtstags System hinzu",
+    usage: "#gbset Tag Monat",
     execute: async (client, message, args, prefix, Discord) => {
-        const fail = new MessageEmbed()
-        .setTitle(`**Birthday** ➽║ **gbset**`)
-        .setColor("RED")
-        .setDescription("Mit diesem Befehl kann man seinen seinen eigenen Geburtstag ins System eintragen um deinen Geburtstag zu feiern.")
-        .addFields(
-            { name: `\`Anwendung\``, value: "➽ #gbset <Tag> <Monat>", inline: true},
-            { name: `\`Beispiel\``, value: `➽ #gbset 26 6\n➽ #gbset 26 juni\n➽ #gbset 26 Juni`, inline: true}
-        )
-        .setTimestamp()
-        .setFooter(`${message.author.tag} | Zeichen wie "<" und ">" bitte weglassen.`)
-        if (message.channel.type !== "DM") {
-
-            if (message && !message.author.bot) {
-
-                if (args[0] < 1 || args[0] > 31) return message.reply({ embeds: [fail] }).catch(console.error());
-                if (!args[0]) return message.reply({ embeds: [fail] }).catch(console.error());
-                const query = args[1]?.toLowerCase();
-                if (!query) return message.reply({ embeds: [fail] }).catch(console.error());
-
-                if (query === "januar") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 1,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "februar") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 2,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "märz"){
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 3,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "april") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 4,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "mai") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 5,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "juni") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 6,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "juli") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 7,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "august") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 8,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "september") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 9,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "oktober") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 10,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "november") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 11,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "dezember") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 12,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "Januar") {
-                        gbschema.findOne({
-                            userId: message.author.id,
-                            guildId: message.guild.id
-                        }, async (err, data) => {
-    
-                            if (err) throw err;
-    
-                            if (data) {
-                                message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                            }
-    
-                            if (!data) {
-    
-                                const newgb = new gbschema({
-                                    name: message.author.username,
-                                    userId: message.author.id,
-                                    guildId: message.guild.id,
-                                    day: args[0],
-                                    month: 1,
-                                });
-    
-                                newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                    .catch(console.error());
-    
-                            };
-                        });
-                    } else if (query === "Februar") {
-                        gbschema.findOne({
-                            userId: message.author.id,
-                            guildId: message.guild.id
-                        }, async (err, data) => {
-    
-                            if (err) throw err;
-    
-                            if (data) {
-                                message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                            }
-    
-                            if (!data) {
-    
-                                const newgb = new gbschema({
-                                    name: message.author.username,
-                                    userId: message.author.id,
-                                    guildId: message.guild.id,
-                                    day: args[0],
-                                    month: 2,
-                                });
-    
-                                newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                    .catch(console.error());
-    
-                            };
-                        });
-                    } else if (query === "März"){
-                        gbschema.findOne({
-                            userId: message.author.id,
-                            guildId: message.guild.id
-                        }, async (err, data) => {
-    
-                            if (err) throw err;
-    
-                            if (data) {
-                                message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                            }
-    
-                            if (!data) {
-    
-                                const newgb = new gbschema({
-                                    name: message.author.username,
-                                    userId: message.author.id,
-                                    guildId: message.guild.id,
-                                    day: args[0],
-                                    month: 3,
-                                });
-    
-                                newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                    .catch(console.error());
-    
-                            };
-                        });
-                    } else if (query === "April") {
-                        gbschema.findOne({
-                            userId: message.author.id,
-                            guildId: message.guild.id
-                        }, async (err, data) => {
-    
-                            if (err) throw err;
-    
-                            if (data) {
-                                message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                            }
-    
-                            if (!data) {
-    
-                                const newgb = new gbschema({
-                                    name: message.author.username,
-                                    userId: message.author.id,
-                                    guildId: message.guild.id,
-                                    day: args[0],
-                                    month: 4,
-                                });
-    
-                                newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                    .catch(console.error());
-    
-                            };
-                        });
-                    } else if (query === "Mai") {
-                        gbschema.findOne({
-                            userId: message.author.id,
-                            guildId: message.guild.id
-                        }, async (err, data) => {
-    
-                            if (err) throw err;
-    
-                            if (data) {
-                                message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                            }
-    
-                            if (!data) {
-    
-                                const newgb = new gbschema({
-                                    name: message.author.username,
-                                    userId: message.author.id,
-                                    guildId: message.guild.id,
-                                    day: args[0],
-                                    month: 5,
-                                });
-    
-                                newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                    .catch(console.error());
-    
-                            };
-                        });
-                    } else if (query === "Juni") {
-                        gbschema.findOne({
-                            userId: message.author.id,
-                            guildId: message.guild.id
-                        }, async (err, data) => {
-    
-                            if (err) throw err;
-    
-                            if (data) {
-                                message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                            }
-    
-                            if (!data) {
-    
-                                const newgb = new gbschema({
-                                    name: message.author.username,
-                                    userId: message.author.id,
-                                    guildId: message.guild.id,
-                                    day: args[0],
-                                    month: 6,
-                                });
-    
-                                newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                    .catch(console.error());
-    
-                            };
-                        });
-                    } else if (query === "Juli") {
-                        gbschema.findOne({
-                            userId: message.author.id,
-                            guildId: message.guild.id
-                        }, async (err, data) => {
-    
-                            if (err) throw err;
-    
-                            if (data) {
-                                message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                            }
-    
-                            if (!data) {
-    
-                                const newgb = new gbschema({
-                                    name: message.author.username,
-                                    userId: message.author.id,
-                                    guildId: message.guild.id,
-                                    day: args[0],
-                                    month: 7,
-                                });
-    
-                                newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                    .catch(console.error());
-    
-                            };
-                        });
-                    } else if (query === "August") {
-                        gbschema.findOne({
-                            userId: message.author.id,
-                            guildId: message.guild.id
-                        }, async (err, data) => {
-    
-                            if (err) throw err;
-    
-                            if (data) {
-                                message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                            }
-    
-                            if (!data) {
-    
-                                const newgb = new gbschema({
-                                    name: message.author.username,
-                                    userId: message.author.id,
-                                    guildId: message.guild.id,
-                                    day: args[0],
-                                    month: 8,
-                                });
-    
-                                newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                    .catch(console.error());
-    
-                            };
-                        });
-                    } else if (query === "September") {
-                        gbschema.findOne({
-                            userId: message.author.id,
-                            guildId: message.guild.id
-                        }, async (err, data) => {
-    
-                            if (err) throw err;
-    
-                            if (data) {
-                                message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                            }
-    
-                            if (!data) {
-    
-                                const newgb = new gbschema({
-                                    name: message.author.username,
-                                    userId: message.author.id,
-                                    guildId: message.guild.id,
-                                    day: args[0],
-                                    month: 9,
-                                });
-    
-                                newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                    .catch(console.error());
-    
-                            };
-                        });
-                    } else if (query === "Oktober") {
-                        gbschema.findOne({
-                            userId: message.author.id,
-                            guildId: message.guild.id
-                        }, async (err, data) => {
-    
-                            if (err) throw err;
-    
-                            if (data) {
-                                message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                            }
-    
-                            if (!data) {
-    
-                                const newgb = new gbschema({
-                                    name: message.author.username,
-                                    userId: message.author.id,
-                                    guildId: message.guild.id,
-                                    day: args[0],
-                                    month: 10,
-                                });
-    
-                                newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                    .catch(console.error());
-    
-                            };
-                        });
-                    } else if (query === "November") {
-                        gbschema.findOne({
-                            userId: message.author.id,
-                            guildId: message.guild.id
-                        }, async (err, data) => {
-    
-                            if (err) throw err;
-    
-                            if (data) {
-                                message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                            }
-    
-                            if (!data) {
-    
-                                const newgb = new gbschema({
-                                    name: message.author.username,
-                                    userId: message.author.id,
-                                    guildId: message.guild.id,
-                                    day: args[0],
-                                    month: 11,
-                                });
-    
-                                newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                    .catch(console.error());
-    
-                            };
-                        });
-                    } else if (query === "Dezember") {
-                        gbschema.findOne({
-                            userId: message.author.id,
-                            guildId: message.guild.id
-                        }, async (err, data) => {
-    
-                            if (err) throw err;
-    
-                            if (data) {
-                                message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                            }
-    
-                            if (!data) {
-    
-                                const newgb = new gbschema({
-                                    name: message.author.username,
-                                    userId: message.author.id,
-                                    guildId: message.guild.id,
-                                    day: args[0],
-                                    month: 12,
-                                });
-    
-                                newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                    .catch(console.error());
-    
-                            };
-                        });
-                } else if (query === "1") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 1,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "2") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 2,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "3"){
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 3,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "4") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 4,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "5") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 5,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "6") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 6,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "7") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 7,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "8") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 8,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "9") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 9,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "10") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 10,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "11") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 11,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if (query === "12") {
-                    gbschema.findOne({
-                        userId: message.author.id,
-                        guildId: message.guild.id
-                    }, async (err, data) => {
-
-                        if (err) throw err;
-
-                        if (data) {
-                            message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Du hast schon ein Datum gesetzt. Falls dein Datum falsch ist bitte ein Ticket auf machen. Danke`).catch(console.error());
-                        }
-
-                        if (!data) {
-
-                            const newgb = new gbschema({
-                                name: message.author.username,
-                                userId: message.author.id,
-                                guildId: message.guild.id,
-                                day: args[0],
-                                month: 12,
-                            });
-
-                            newgb.save().then(message.reply(`<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falls dein Datum falsch gesetzt wurde bitte ein Ticket auf machen. Danke`))
-                                .catch(console.error());
-
-                        };
-                    });
-                } else if(query) {
-                    return message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Es wurde kein Monat angegeben.`).catch(console.error());
+        const failed = new MessageEmbed()
+            .setTitle(`**Birthday** ➽║ **gbset**`)
+            .setColor("RED")
+            .setDescription(
+                "Mit diesem Befehl kann man seinen seinen eigenen Geburtstag ins System eintragen."
+            )
+            .addFields(
+                {
+                    name: `\`Verwendung\``,
+                    value: "➽ #gbset <Tag> <Monat>",
+                    inline: true,
+                },
+                {
+                    name: `\`Beispiel\``,
+                    value: `➽ #gbset 26 6\n➽ #gbset 26 juni\n➽ #gbset 26 Juni`,
+                    inline: true,
                 }
-            };
-        };
-    }
-}
+            )
+            .setTimestamp()
+            .setFooter(
+                `${message.author.tag} | Sonderzeichen wie "<" und ">" bitte weglassen.`
+            );
+        if (message.channel.type !== "DM") {
+            if (message && !message.author.bot) {
+                if (args[0] >= 1 && args[0] <= 31) {
+                    const query = args[1]?.toLowerCase();
+                    let month;
+                    switch (query) {
+                        case "januar" || "1":
+                            month = 1;
+                            break;
+                        case "februar" || "2":
+                            month = 2;
+                            break;
+                        case "märz" || "3":
+                            month = 3;
+                            break;
+                        case "april" || "4":
+                            month = 4;
+                            break;
+                        case "mai" || "5":
+                            month = 5;
+                            break;
+                        case "juni" || "6":
+                            month = 6;
+                            break;
+                        case "juli" || "7":
+                            month = 7;
+                            break;
+                        case "august" || "8":
+                            month = 8;
+                            break;
+                        case "september" || "9":
+                            month = 9;
+                            break;
+                        case "oktober" || "10":
+                            month = 10;
+                            break;
+                        case "november" || "11":
+                            month = 11;
+                            break;
+                        case "dezember" || "12":
+                            month = 12;
+                            break;
+                        case "01":
+                            month = 1;
+                            break;
+                        case "02":
+                            month = 2;
+                            break;
+                        case "03":
+                            month = 3;
+                            break;
+                        case "04":
+                            month = 4;
+                            break;
+                        case "05":
+                            month = 5;
+                            break;
+                        case "06":
+                            month = 6;
+                            break;
+                        case "07":
+                            month = 7;
+                            break;
+                        case "08":
+                            month = 8;
+                            break;
+                        case "09":
+                            month = 9;
+                            break;
+                    }
+                    birthdaySchema.findOne(
+                        {
+                            userId: message.author.id,
+                            guildId: message.guild.id,
+                        },
+                        async (err, data) => {
+                            if (err) {
+                                throw err;
+                            } else if (data) {
+                                message
+                                    .reply(
+                                        `<a:LX_kreuz:917141623777939537> ➽║ Du hast bereits ein Datum gesetzt. Falsches Datum? => Ticket öffnen. Danke`
+                                    )
+                                    .catch(console.error());
+                            } else if (!data) {
+                                const newBirthday = new birthdaySchema({
+                                    name: message.author.username,
+                                    userId: message.author.id,
+                                    guildId: message.guild.id,
+                                    day: args[0],
+                                    month: month,
+                                });
+                                newBirthday
+                                    .save()
+                                    .then(
+                                        message.reply(
+                                            `<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falsches Datum? => Ticket öffnen. Danke`
+                                        )
+                                    )
+                                    .catch(console.error());
+                            }
+                        }
+                    );
+                } else {
+                    return message.reply({ embeds: [failed] }).catch(console.error());
+                }
+            } else {
+                return message.reply({ embeds: [failed] }).catch(console.error());
+            }
+        }
+    },
+};
