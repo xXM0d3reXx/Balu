@@ -16,4 +16,3 @@ client.on("ready", () => {
         } catch (err) { console.error(err) }
     }, 60 * 1000 * 60);
 })
-hi
