@@ -35,13 +35,6 @@ module.exports = {
                 });
 
                 data.save();
-                let embede = new MessageEmbed()
-                    .setDescription(`${message.author} ist nun afk. Grund: ${text}`)
-                    .setColor("RANDOM")
-
-                return message.reply({
-                    embeds: [embede]
-                }).catch(console.error);
             };
 
             //GN8 WITHOUT TEXT
@@ -65,13 +58,6 @@ module.exports = {
                 });
 
                 data.save();
-                let embede = new MessageEmbed()
-                    .setDescription(`${message.author} ist nun afk. Grund: ${reason}`)
-                    .setColor("RANDOM")
-
-                return message.reply({
-                    embeds: [embede]
-                }).catch(console.error);
             };
             return
         };
