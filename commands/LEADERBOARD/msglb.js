@@ -12,7 +12,7 @@ module.exports = {
     execute: async (client, message, args, prefix, Discord) => {
         try {
             guildSchema.find({}, async (err, data) => {
-                if (err) return console.error(err);
+                if (err) return console.log(err);
 
                 const leader = await msgtop.find({
                     lb: "all"
@@ -33,15 +33,7 @@ module.exports = {
                         }).sort([
                             ['countId', 'descending']
                         ]).exec((err, res) => {
-                            if (err) console.error(err)
-                            let end = 12;
-                            let endf = 1;
-                            let ends = 2;
-                            let endt = 3;
-                            let start = 3;
-                            let first = 0;
-                            let second = 1;
-                            let third = 2;
+                            if (err) console.log(err)
                             let embed = new MessageEmbed()
                             try {
                                 embed.setDescription(`${mapping} ` + ` ${mappings}`)
@@ -49,48 +41,40 @@ module.exports = {
 
                                 embed.setTitle("Heutige Nachrichten Stats");
                                 embed.setThumbnail("https://cdn.discordapp.com/attachments/913146795532640326/925545664438480937/lexenia-pb.gif");
-                            } catch (err) { console.error(err) }
+                            } catch (err) { console.log(err) }
                             try {
-                                for (f = first; f < endf; f++) {
-                                    embed.addFields({
-                                        name: `\`🥇\` ${res[f].name}`,
-                                        value: `${res[f].countId + 1} Nachrichten`,
-                                        inline: true
-                                    })
+                                embed.addFields(
+                                    {
+                                        name: `\`🥇\` ${res[0].name}`,
+                                        value: `${res[0].countId + 1} Nachrichten`,
+                                        inline: true,
+                                    },
+                                    {
+                                        name: `\`🥈\` ${res[1].name}`,
+                                        value: `${res[1].countId + 1} Nachrichten`,
+                                        inline: true,
+                                    },
+                                    {
+                                        name: `\`🥉\` ${res[2].name}`,
+                                        value: `${res[2].countId + 1} Nachrichten`,
+                                        inline: true,
+                                    }
+                                );
+                                for (i = 3; i != 12; i++) {
+                                    embed.addFields([
+                                        {
+                                            name: `\`${i + 1}.\` ${res[i].name}`,
+                                            value: `${res[i].countId + 1} Nachrichten`,
+                                            inline: true,
+                                        },
+                                    ]);
                                 }
-                            } catch (err) { console.error(err) };
-                            try {
-                                for (s = second; s < ends; s++) {
-                                    embed.addFields({
-                                        name: `\`🥈\` ${res[s].name}`,
-                                        value: `${res[s].countId + 1} Nachrichten`,
-                                        inline: true
-                                    })
-                                }
-                            } catch (err) { console.error(err) };
-                            try {
-                                for (t = third; t < endt; t++) {
-                                    embed.addFields({
-                                        name: `\`🥉\` ${res[t].name}`,
-                                        value: `${res[t].countId + 1} Nachrichten`,
-                                        inline: true
-                                    })
-                                }
-                            } catch (err) { console.error(err) };
-                            try {
-                                for (i = start; i < end; i++) {
-                                    embed.addFields([{
-                                        name: `\`${i + 1}.\` ${res[i].name}`,
-                                        value: `${res[i].countId + 1} Nachrichten`,
-                                        inline: true
-                                    }])
-                                }
-                            } catch (err) { console.error(err) };
+                            } catch (err) { console.log(err) };
                             try {
                                 return message.channel.send({
                                     embeds: [embed]
                                 })
-                            } catch (err) { console.error(err) }
+                            } catch (err) { console.log(err) }
                         })
                     } else {
                         const mapping = await sorta.map((vv) => `<a:LX_announcement:912787060522381343> ➽║ Heute wurde keine Nachricht versendet! Rekord liegt bei ${vv?.countId} <a:LX_chat:926269479875387442>`);
@@ -101,7 +85,7 @@ module.exports = {
                             return message.channel.send({
                                 embeds: [embedss]
                             })
-                        } catch (err) { console.error(err) }
+                        } catch (err) { console.log(err) }
                     };
                 }
             });
