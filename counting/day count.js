@@ -13,6 +13,6 @@ client.on("ready", () => {
         var yearCount = new Date().getFullYear();
         try {
             channel.setName(`➽║📅${dayCount}.${monthCount}.${yearCount}`)
-        } catch (err) { console.error(err) }
+        } catch (err) { console.log(err) }
     }, 60 * 1000 * 60);
 })
