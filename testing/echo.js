@@ -8,3 +8,4 @@ const data = new SlashCommandBuilder()
             .setName('message')
             .setDescription('The message to echo back')
             .setRequired(true))
+module.exports = data
