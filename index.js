@@ -35,7 +35,7 @@ const client = new Discord.Client({
 module.exports.Client = client
 
 const test = [];
-const rest = new REST({ version: '9' }).setToken(token);
+const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
 
 rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: test })
     .then(() => console.log('Successfully registered application commands.'))
