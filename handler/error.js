@@ -9,7 +9,7 @@ client.on('rateLimit', (info) => {
 });
 
 client.on("error", function (error) {
-    console.error(`client's WebSocket encountered a connection error: ${error}, ${moment.utc().format("dddd, MMMM Do YYYY, hh:mm:ss")}`);
+    console.log(`client's WebSocket encountered a connection error: ${error}, ${moment.utc().format("dddd, MMMM Do YYYY, hh:mm:ss")}`);
 });
 
 client.on("warn", function (info) {
