@@ -5,7 +5,7 @@ const dotenv = require('dotenv')
 dotenv.config()
 const token = process.env.TOKEN
 
-const commands = [];
+const test = [];
 
 // Place your client and guild ids here
 const clientId = '925896859829035048';
@@ -19,7 +19,7 @@ const rest = new REST({ version: '9' }).setToken(token);
 
         await rest.put(
             Routes.applicationGuildCommands(clientId, guildId),
-            { body: commands },
+            { body: test },
         );
 
         console.log('Successfully reloaded application (/) commands.');
