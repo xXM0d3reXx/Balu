@@ -32,10 +32,11 @@ module.exports = {
                 .addField("⏲ Alter des Kontos:", ` ${moment.utc(toPing.user.createdAt).format("dddd, MMMM Do YYYY")}\n> ${joinede} day(S) Ago`, true)
                 .addField('⏲ Auf dem Server seit:', `${joineddate} \n> ${joined} day(S) Ago`)
 
-            let reply = await message.channel.send({
-                embeds: [embed]
-            }).catch(console.error());
-            reply.edit(embed).catch(console.error());
+            try {
+                return message.reply({
+                    embeds: [embed]
+                })
+            } catch (err) { console.log(err) }
         } else if (!toPing) {
 
             let x = Date.now() - message.author.createdAt;
@@ -58,10 +59,11 @@ module.exports = {
                 .addField("⏲ Alter des Kontos:", ` ${moment.utc(message.author.createdAt).format("dddd, MMMM Do YYYY")}\n> ${joinede} day(S) Ago`, true)
                 .addField('⏲ Auf dem Server seit:', `${joineddate} \n> ${joined} day(S) Ago`)
 
-            let reply = await message.channel.send({
-                embeds: [embed]
-            }).catch(console.error());
-            reply.edit(embed).catch(console.error());
+            try {
+                return message.reply({
+                    embeds: [embed]
+                })
+            } catch (err) { console.log(err) }
         }
     }
 }

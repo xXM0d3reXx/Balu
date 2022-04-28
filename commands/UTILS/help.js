@@ -16,7 +16,9 @@ module.exports = {
             const command = await client.commands.get(args[0]);
 
             if (!command) {
-                return message.channel.send("Unbekannter Command: " + '#' + args[0]).catch(console.error);
+                try {
+                    return message.channel.send("Unbekannter Command: " + '#' + args[0])
+                } catch (err) { console.log(err) }
             }
 
             let embed = new MessageEmbed()
@@ -26,9 +28,11 @@ module.exports = {
                 .setThumbnail(client.user.displayAvatarURL())
                 .setColor("RANDOM")
 
-            return message.channel.send({
-                embeds: [embed]
-            }).catch(console.error);
+            try {
+                return message.reply({
+                    embeds: [embed]
+                })
+            } catch (err) { console.log(err) }
         } else {
 
             let emx = new MessageEmbed()
@@ -45,9 +49,11 @@ module.exports = {
 
             };
 
-            return message.channel.send({
-                embeds: [emx]
-            }).catch(console.error)
+            try {
+                return message.reply({
+                    embeds: [emx]
+                })
+            } catch (err) { console.log(err) }
         }
     }
 }

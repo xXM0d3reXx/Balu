@@ -19,7 +19,7 @@ module.exports = {
                 guildSchema.find({
                     guildId: message.guild.id
                 }, async (err, data) => {
-                    if (err) throw err;
+                    if (err) return console.log(err);
                     const leader = await msgtop.find({}).sort([
                         ['countId', 'descending']
                     ]).limit(1)
@@ -34,19 +34,21 @@ module.exports = {
                             let embed = new MessageEmbed()
                                 .setDescription(`${mapping} ` + ` ${mappings}`)
                                 .setColor("RANDOM")
-
-                            return message.channel.send({
-                                embeds: [embed]
-                            }).catch(console.error);
+                            try {
+                                return message.channel.send({
+                                    embeds: [embed]
+                                })
+                            } catch (err) { console.log(err) }
                         } else {
                             const mapping = (`<a:LX_announcement:912787060522381343> ➽║ Heute wurde schon insgesamt eine Nachricht versendet! Rekord liegt bei ${vv?.countId} <a:LX_chat:926269479875387442>`);
                             let embedss = new MessageEmbed()
                                 .setDescription(`${mapping}`)
                                 .setColor("RANDOM")
-
-                            return message.channel.send({
-                                embeds: [embedss]
-                            }).catch(console.error);
+                            try {
+                                return message.channel.send({
+                                    embeds: [embedss]
+                                })
+                            } catch (err) { console.log(err) }
                         };
                     }
                 });

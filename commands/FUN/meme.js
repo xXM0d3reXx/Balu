@@ -11,7 +11,9 @@ module.exports = {
         fetch('https://meme-api.herokuapp.com/gimme')
             .then(res => res.json())
             .then(async json => {
-                message.channel.send(`${json.url}`).catch(console.error)
+                try {
+                    return message.channel.send(`${json.url}`)
+                } catch (err) { console.log(err) }
             });
     }
 }

@@ -71,7 +71,7 @@ client.on("messageCreate", async message => {
                 cooldown1.set(message.author.id, Date.now() + 5000);
                 setTimeout(() => {
                     try {
-                    cooldown1.delete(message.author.id)
+                        cooldown1.delete(message.author.id)
                     } catch (err) { console.log(err) }
                 }, 5000);
             };
@@ -171,7 +171,7 @@ client.on("messageCreate", async message => {
                 cooldown1.set(message.guild.id, Date.now() + 1800000);
                 setTimeout(() => {
                     try {
-                    cooldown1.delete(message.guild.id)
+                        cooldown1.delete(message.guild.id)
                     } catch (err) { console.log(err) }
                 }, 1800000);
             } else {

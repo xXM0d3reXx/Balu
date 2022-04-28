@@ -19,9 +19,9 @@ module.exports = {
         const row = new MessageActionRow()
             .addComponents(
                 new MessageSelectMenu()
-                .setCustomId('select')
-                .setPlaceholder('Nichts ausgewählt')
-                .addOptions([{
+                    .setCustomId('select')
+                    .setPlaceholder('Nichts ausgewählt')
+                    .addOptions([{
                         label: 'Energy Salzburg',
                         emoji: {
                             "name": "1️⃣"
@@ -77,7 +77,7 @@ module.exports = {
                         },
                         value: 'https://streams.radiobob.de/bob-rockhits/aac-64/streams.radiobob.de/',
                     },
-                ]),
+                    ]),
             );
         const filter = (interaction) => interaction.isSelectMenu() && interaction.user.id === message.author.id
 
@@ -98,40 +98,45 @@ module.exports = {
                 }
 
                 function joinChannel(channelId) {
-                    client.channels.fetch(channelId).then(channel => {
-                        //JOIN THE VC AND PLAY AUDIO
-                        const VoiceConnection = joinVoiceChannel({
-                            channelId: channel.id,
-                            guildId: channel.guild.id,
-                            adapterCreator: channel.guild.voiceAdapterCreator
-                        });
-                        //use a: direct mp3 link / file / const ytdl = require("ytdl-core"); ytdl("https://www.youtube.com/watch?v=IoUqh5q--MY"); "http://cdn.nrjaudio.fm/adwz1/at/36005/mp3_128.mp3
-                        const resource = createAudioResource(value, {
-                            inlineVolume: true
-                        });
-                        resource.volume.setVolume(0.2);
-                        const player = createAudioPlayer()
-                        VoiceConnection.subscribe(player);
-                        player.play(resource);
-                        player.on("end", () => {
-                            player.stop()
-                            VoiceConnection.destroy()
+                    try {
+                        client.channels.fetch(channelId).then(channel => {
+                            //JOIN THE VC AND PLAY AUDIO
+                            const VoiceConnection = joinVoiceChannel({
+                                channelId: channel.id,
+                                guildId: channel.guild.id,
+                                adapterCreator: channel.guild.voiceAdapterCreator
+                            });
+                            //use a: direct mp3 link / file / const ytdl = require("ytdl-core"); ytdl("https://www.youtube.com/watch?v=IoUqh5q--MY"); "http://cdn.nrjaudio.fm/adwz1/at/36005/mp3_128.mp3
+                            const resource = createAudioResource(value, {
+                                inlineVolume: true
+                            });
+                            resource.volume.setVolume(0.2);
+                            const player = createAudioPlayer()
+                            VoiceConnection.subscribe(player);
+                            player.play(resource);
+                            player.on("end", () => {
+                                player.stop()
+                                VoiceConnection.destroy()
 
+                            })
                         })
-                    }).catch(console.error)
+                    } catch (err) { console.log(err) }
                 }
-                message.channel.send(`<a:LX_haken:912459313518379028> ➽║ Es wird nun der ausgewählte Radiosender abgespielt. Nutze den Command nochmal um den sender zu ändern.`).catch(console.error)
+                try {
+                    message.channel.send(`<a:LX_haken:912459313518379028> ➽║ Es wird nun der ausgewählte Radiosender abgespielt. Nutze den Command nochmal um den sender zu ändern.`)
+                } catch (err) { console.log(err) }
             } catch (error) {
-                console.error
+                console.log(error)
             }
         })
         collector.on("end", async (collected) => {
             return
         })
-
-        message.channel.send({
-            content: "Wähle hier aus welchen der unten Aufgelisteten Radiosender du abspielen willst.",
-            components: [row]
-        }).catch(console.error);
+        try {
+            message.channel.send({
+                content: "Wähle hier aus welchen der unten Aufgelisteten Radiosender du abspielen willst.",
+                components: [row]
+            })
+        } catch (err) { console.log(err) }
     }
 }

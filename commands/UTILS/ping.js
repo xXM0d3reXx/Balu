@@ -13,8 +13,12 @@ module.exports = {
             const embed = new Discord.MessageEmbed()
                 .setTitle('Pong!')
                 .setDescription(`WebSocket ping ist ${Math.round(client.ws.ping)}MS\nMessage edit ping ist ${Math.floor(msg.createdAt - message.createdAt)}MS!`)
-            await message.channel.send({ embeds: [embed] }).catch(console.error)
-            msg.delete().catch(console.error)
+            try {
+                await message.channel.send({ embeds: [embed] })
+            } catch (err) { console.log(err) }
+            try {
+                msg.delete()
+            } catch (err) { console.log(err) }
 
         };
     }

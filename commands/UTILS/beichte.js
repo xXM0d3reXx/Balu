@@ -8,7 +8,9 @@ module.exports = {
             if (message && !message.author.bot) {
                 let text = message.content.split(" ").slice(1).join(" ")
                 if (!text) {
-                    return message.reply(`Bitte verfasse eine Beichte wenn du mich nutzen willst.`).catch(console.error())
+                    try {
+                        return message.reply(`Bitte verfasse eine Beichte wenn du mich nutzen willst.`)
+                    } catch (err) { console.log(err) }
                 };
 
                 const guild = client.guilds.cache.get("851071074736144415");
@@ -23,10 +25,11 @@ module.exports = {
                     .setDescription(text)
                     .setFooter("Du möchtest etwas beichten? Dann schreib unserem Bot mit #beichte und deiner Beichte. Alle Beichten sind zu 100% anonym.", 'https://cdn.discordapp.com/attachments/913146795532640326/925545664438480937/lexenia-pb.gif')
 
-                let reply = await channelss.send({
-                    embeds: [embed]
-                }).catch(console.error());
-                reply.edit(embed).catch(console.error());
+                try {
+                    return channelss.send({
+                        embeds: [embed]
+                    })
+                } catch (err) { console.log(err) }
                 console.log(`${message.author.id} hat gebeichtet`)
             };
         };

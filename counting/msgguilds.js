@@ -2,7 +2,7 @@ const guildSchema = require('../models/msg-guild');
 const client = require("../index").Client
 
 client.on('messageCreate', async (message) => {
-    if(message.channel.id === '851073890795913286') {
+    if (message.channel.id === '851073890795913286') {
 
         if (message && !message.author.bot) {
 

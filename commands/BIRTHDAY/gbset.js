@@ -5,7 +5,7 @@ module.exports = {
     description: "Fügt dich zum Geburtstags System hinzu",
     usage: "#gbset Tag Monat",
     execute: async (client, message, args, prefix, Discord) => {
-        const failed = new MessageEmbed()
+        const fail = new MessageEmbed()
             .setTitle(`**Birthday** ➽║ **gbset**`)
             .setColor("RED")
             .setDescription(
@@ -104,13 +104,14 @@ module.exports = {
                         },
                         async (err, data) => {
                             if (err) {
-                                throw err;
+                                return console.log(err);
                             } else if (data) {
-                                message
-                                    .reply(
-                                        `<a:LX_kreuz:917141623777939537> ➽║ Du hast bereits ein Datum gesetzt. Falsches Datum? => Ticket öffnen. Danke`
-                                    )
-                                    .catch(console.error());
+                                try {
+                                    return message
+                                        .reply(
+                                            `<a:LX_kreuz:917141623777939537> ➽║ Du hast bereits ein Datum gesetzt. Falsches Datum? => Ticket öffnen. Danke`
+                                        )
+                                } catch (err) { console.log(err) }
                             } else if (!data) {
                                 const newBirthday = new birthdaySchema({
                                     name: message.author.username,
@@ -126,15 +127,23 @@ module.exports = {
                                             `<a:LX_haken:912459313518379028> ➽║ Dein Geburtstag wurde nun gesetzt. Falsches Datum? => Ticket öffnen. Danke`
                                         )
                                     )
-                                    .catch(console.error());
+                                    .catch(console.log());
                             }
                         }
                     );
                 } else {
-                    return message.reply({ embeds: [failed] }).catch(console.error());
+                    try {
+                        return message.reply({
+                            embeds: [fail]
+                        })
+                    } catch (err) { console.log(err) }
                 }
             } else {
-                return message.reply({ embeds: [failed] }).catch(console.error());
+                try {
+                    return message.reply({
+                        embeds: [fail]
+                    })
+                } catch (err) { console.log(err) }
             }
         }
     },

@@ -23,8 +23,11 @@ module.exports = {
                     .setDescription(`<@${message.author.id}> geht jetzt **schlafen** und Wünscht allen eine **Gute Nacht**!\n \`Extra Kommentar:\` ${text}`)
 
 
-                let reply = await message.channel.send({ embeds: [embed] }).catch(console.error);
-                reply.edit(embed).catch(console.error);
+                try {
+                    message.reply({
+                        embeds: [embed]
+                    })
+                } catch (err) { console.log(err) }
 
                 data = new afkshema({
                     name: message.author.username,
@@ -47,8 +50,12 @@ module.exports = {
                     .setDescription(`<@${message.author.id}> geht jetzt **schlafen** und Wünscht allen eine **Gute Nacht**!\n \`Extra Kommentar:\` None`)
 
 
-                let reply = await message.channel.send({ embeds: [embed] }).catch(console.error);
-                reply.edit(embed).catch(console.error);
+                try {
+                    message.reply({
+                        embeds: [embed]
+                    })
+                } catch (err) { console.log(err) }
+
                 data = new afkshema({
                     name: message.author.username,
                     userId: message.author.id,

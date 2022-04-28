@@ -17,13 +17,15 @@ module.exports = {
             timestamp: Date.now()
         });
 
+
         data.save();
         let embed = new MessageEmbed()
             .setDescription(`${message.author} ist nun AFK. Grund: ${reason}`)
             .setColor("RANDOM")
-
-        return message.reply({
-            embeds: [embed]
-        }).catch(console.error);
+        try {
+            return message.reply({
+                embeds: [embed]
+            })
+        } catch (err) { console.log(err) }
     }
 }

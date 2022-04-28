@@ -25,10 +25,11 @@ module.exports = {
 
 
 
-                let reply = await message.channel.send({
-                    embeds: [embed]
-                }).catch(console.error());
-                reply.edit(embed).catch(console.error());
+                try {
+                    return message.reply({
+                        embeds: [embed]
+                    })
+                } catch (err) { console.log(err) }
             } else {
                 const embed = new Discord.MessageEmbed()
                     .setDescription(`Avatar von ${toPing}`)
@@ -37,10 +38,11 @@ module.exports = {
                         dynamic: true,
                         size: 2048
                     }))
-                let reply = await message.channel.send({
-                    embeds: [embed]
-                }).catch(console.error());
-                reply.edit(embed).catch(console.error());
+                try {
+                    return message.reply({
+                        embeds: [embed]
+                    })
+                } catch (err) { console.log(err) }
             }
         }
         if (!toPing) {
@@ -59,10 +61,11 @@ module.exports = {
 
 
 
-                let reply = await message.channel.send({
-                    embeds: [embed]
-                }).catch(console.error());
-                reply.edit(embed).catch(console.error());
+                try {
+                    return message.reply({
+                        embeds: [embed]
+                    })
+                } catch (err) { console.log(err) }
             } else {
                 const embed = new Discord.MessageEmbed()
                     .setDescription(`Avatar von ${message.author}`)
@@ -71,10 +74,11 @@ module.exports = {
                         dynamic: true,
                         size: 2048
                     }))
-                let reply = await message.channel.send({
-                    embeds: [embed]
-                }).catch(console.error());
-                reply.edit(embed).catch(console.error());
+                try {
+                    return message.reply({
+                        embeds: [embed]
+                    })
+                } catch (err) { console.log(err) }
             }
         }
     }

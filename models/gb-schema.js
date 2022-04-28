@@ -14,15 +14,15 @@ const schema = new Schema(
 
     {
 
-        name: { type: String},
+        name: { type: String },
 
         userId: { type: String },
 
         guildId: { type: String },
 
-        day: { type: Number},
+        day: { type: Number },
 
-        month: { type: Number},
+        month: { type: Number },
 
     },
 
