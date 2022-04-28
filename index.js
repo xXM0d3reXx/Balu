@@ -1,9 +1,13 @@
 // INPUT
 const Discord = require('discord.js')
-const fs = require('fs')
+const fs = require('node:fs')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 dotenv.config()
+const { REST } = require('@discordjs/rest');
+const { Routes } = require('discord-api-types/v9');
+const clientId = '925896859829035048';
+const guildId = '851071074736144415';
 
 //INTENTS AND PARTIALS
 const {
@@ -53,6 +57,14 @@ for (const file of countingFiles) {
         client.countings.set(counting.name, counting);
     }
 };
+
+const testings = [];
+const commandFiles = fs.readdirSync('./testing').filter(file => file.endsWith('.js'));
+
+for (const file of commandFiles) {
+    const test = require(`./testing/${file}`);
+    testings.push(test.data.toJSON());
+}
 
 // LOGIN
 client.login(process.env.TOKEN)
