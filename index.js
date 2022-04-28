@@ -58,7 +58,7 @@ for (const file of countingFiles) {
     }
 };
 
-client.testing = new Collection();
+client.testing = new Discord.Collection();
 const testingFiles = fs.readdirSync('./testing').filter(file => file.endsWith('.js'));
 for (const file of testingFiles) {
     const test = require(`./testing/${file}`);
