@@ -12,7 +12,7 @@ client.on('messageCreate', async (message) => {
                 guildId: message.guild.id
             }, async (err, data) => {
 
-                if (err) return console.error(err);
+                if (err) return console.log(err);
                 if (data) {
                     data.countId++;
 
