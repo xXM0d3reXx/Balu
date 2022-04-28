@@ -9,13 +9,13 @@ client.on("ready", async () => {
 
     setInterval(async function () {
         try {
-            var onlineCount = (await guild.members?.fetch().catch(console.error())).filter(member => !member.user.bot && member.presence?.status !== 'offline' && member.presence?.status).size;
-        } catch (err) { console.error(err) }
+            var onlineCount = (await guild.members?.fetch()).filter(member => !member.user.bot && member.presence?.status !== 'offline' && member.presence?.status).size;
+        } catch (err) { console.log(err) }
         try {
-            var memberCount = (await guild.members?.fetch().catch(console.error())).filter(member => !member.user.bot).size;
-        } catch (err) { console.error(err) }
+            var memberCount = (await guild.members?.fetch()).filter(member => !member.user.bot).size;
+        } catch (err) { console.log(err) }
         try {
             channel.setName(`➽║🟢${onlineCount}║👤${memberCount}`)
-        } catch (err) { console.error(err) }
+        } catch (err) { console.log(err) }
     }, 60 * 5000);
 })
