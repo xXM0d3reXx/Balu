@@ -9,15 +9,13 @@ const clientId = '925896859829035048';
 const guildId = '851071074736144415';
 
 const commands = [];
-const commandFolders = fs.readdirSync('./testing')
-for (const folder of commandFolders) {
-    const commandFiles = fs.readdirSync(`./testing/${folder}`).filter(file => file.endsWith('.js'))
+const commandFiles = fs.readdirSync('./testing').filter(file => file.endsWith('.js'));
 
-    for (const file of commandFiles) {
-        const command = require(`./testing/${file}`);
-        commands.push(command.data.toJSON());
-    }
+for (const file of commandFiles) {
+    const command = require(`./testing/${file}`);
+    commands.push(command.data.toJSON());
 }
+
 
 const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
 
