@@ -58,12 +58,13 @@ for (const file of countingFiles) {
     }
 };
 
-const testings = [];
-const commandFiles = fs.readdirSync('./testing').filter(file => file.endsWith('.js'));
-
-for (const file of commandFiles) {
+client.testing = new Collection();
+const testingFiles = fs.readdirSync('./testing').filter(file => file.endsWith('.js'));
+for (const file of testingFiles) {
     const test = require(`./testing/${file}`);
-    testings.push(test.data.toJSON());
+    // Set a new item in the Collection
+    // With the key as the command name and the value as the exported module
+    client.testing.set(test.data.name, test);
 }
 
 // LOGIN
