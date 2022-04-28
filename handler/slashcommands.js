@@ -2,7 +2,6 @@ const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const fs = require('node:fs');
 const dotenv = require('dotenv')
-const command = require('../testing/')
 dotenv.config()
 const token = process.env.TOKEN
 
