@@ -34,10 +34,17 @@ const client = new Discord.Client({
 // EXPORT CLIENT
 module.exports.Client = client
 
-const test = [];
+const testd = [];
+const testingFiles = fs.readdirSync('./testing').filter(file => file.endsWith('.js'));
+for (const file of testingFiles) {
+    const test = require(`./testing/${file}`);
+    // Set a new item in the Collection
+    // With the key as the command name and the value as the exported module
+    testd.push(test.data.toJSON());
+}
 const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
 
-rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: test })
+rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: testd })
     .then(() => console.log('Successfully registered application commands.'))
     .catch(console.error);
 
@@ -64,15 +71,6 @@ for (const file of countingFiles) {
         client.countings.set(counting.name, counting);
     }
 };
-
-const testing = [];
-const testingFiles = fs.readdirSync('./testing').filter(file => file.endsWith('.js'));
-for (const file of testingFiles) {
-    const test = require(`./testing/${file}`);
-    // Set a new item in the Collection
-    // With the key as the command name and the value as the exported module
-    testing.push(test.data.toJSON());
-}
 
 // LOGIN
 client.login(process.env.TOKEN)
