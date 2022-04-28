@@ -71,23 +71,23 @@ client.on("ready", async () => {
                         try {
                             player.stop()
                         } catch (e) {
-                            console.error(e)
+                            console.log(e)
                         }
                         try {
                             setTimeout(() => {
                                 VoiceConnection.destroy()
                             }, 300000);
                         } catch (a) {
-                            console.error(a)
+                            console.log(a)
                         }
                         setTimeout(() => {
                             joinChannel(channel.id)
                         }, 300000);
                     })
                 })
-            } catch (err) { console.error(err) }
+            } catch (err) { console.log(err) }
         }
     } catch (error) {
-        console.error(error)
+        console.log(error)
     }
 })
