@@ -38,18 +38,18 @@ client.on("messageCreate", async message => {
                 })
                 try {
                     message.reply(`Ich bin gerade im Cooldown, bitte warte ${restdown}.`)
-                } catch (err) { console.error(err) }
+                } catch (err) { console.log(err) }
             } else {
                 let rstatus = statuse[Math.floor(Math.random() * statuse.length)];
                 try {
                     message.channel.send(rstatus)
-                } catch (err) { console.error(err) }
+                } catch (err) { console.log(err) }
 
                 cooldown.set(message.author.id, Date.now() + 5000);
                 setTimeout(() => {
                     try {
                         cooldown.delete(message.author.id)
-                    } catch (err) { console.error(err) }
+                    } catch (err) { console.log(err) }
                 }, 5000);
             };
         };
@@ -61,16 +61,18 @@ client.on("messageCreate", async message => {
                 })
                 try {
                     message.reply(`Ich bin gerade im Cooldown, bitte warte ${restdown}.`)
-                } catch (err) { console.error(err) }
+                } catch (err) { console.log(err) }
             } else {
                 let rasuna = asuna[Math.floor(Math.random() * asuna.length)];
                 try {
                     message.channel.send(rasuna)
-                } catch (err) { console.error(err) }
+                } catch (err) { console.log(err) }
 
                 cooldown1.set(message.author.id, Date.now() + 5000);
                 setTimeout(() => {
+                    try {
                     cooldown1.delete(message.author.id)
+                    } catch (err) { console.log(err) }
                 }, 5000);
             };
         };
@@ -88,7 +90,7 @@ client.on("messageCreate", async message => {
                             return message.reply({
                                 embeds: [embed]
                             })
-                        } catch (err) { console.error(err) }
+                        } catch (err) { console.log(err) }
                     }
                 })
             }
@@ -103,7 +105,7 @@ client.on("messageCreate", async message => {
                         return message.reply({
                             embeds: [embed]
                         })
-                    } catch (err) { console.error(err) }
+                    } catch (err) { console.log(err) }
                 }
             })
 
@@ -122,20 +124,20 @@ client.on("messageCreate", async message => {
                                 message.member.roles.remove(role4)
                                 message.member.roles.remove(roleID)
                             } catch (err) {
-                                console.error(err)
+                                console.log(err)
                             }
                         }
                         if (customStatus.includes(inviteLink)) {
                             try {
                                 message.member.roles.add(roleID)
                             } catch (err) {
-                                console.error(err)
+                                console.log(err)
                             }
                         }
                     }
                 }
             } catch (err) {
-                console.error(err)
+                console.log(err)
             }
         }
     }
@@ -147,12 +149,12 @@ client.on("messageCreate", async message => {
         if (message.author.id === '848670572610715698') {
             try {
                 return command.execute(client, message, args, prefix, Discord);
-            } catch (err) { console.error(err) }
+            } catch (err) { console.log(err) }
         }
         if (message.channelId === "851073946895384627") {
             try {
                 return command.execute(client, message, args, prefix, Discord);
-            } catch (err) { console.error(err) }
+            } catch (err) { console.log(err) }
         } else {
             if (command.name === "msglb") {
                 if (message.channel.type === "DM") { return command.execute(client, message, args, prefix, Discord); }
@@ -163,12 +165,14 @@ client.on("messageCreate", async message => {
                     })
                     try {
                         return message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Ich bin gerade im Cooldown, bitte warte ${restdown}.`)
-                    } catch (err) { console.error(err) }
+                    } catch (err) { console.log(err) }
                 }
                 command.execute(client, message, args, prefix, Discord);
                 cooldown1.set(message.guild.id, Date.now() + 1800000);
                 setTimeout(() => {
+                    try {
                     cooldown1.delete(message.guild.id)
+                    } catch (err) { console.log(err) }
                 }, 1800000);
             } else {
                 if (cooldown.has(message.author.id)) {
@@ -178,14 +182,14 @@ client.on("messageCreate", async message => {
                     })
                     try {
                         return message.reply(`<a:LX_kreuz:917141623777939537> ➽║ Ich bin gerade im Cooldown, bitte warte ${restdown}.`)
-                    } catch (err) { console.error(err) }
+                    } catch (err) { console.log(err) }
                 }
                 command.execute(client, message, args, prefix, Discord);
                 cooldown.set(message.author.id, Date.now() + 5000);
                 setTimeout(() => {
                     try {
                         cooldown.delete(message.author.id)
-                    } catch (err) { console.error(err) }
+                    } catch (err) { console.log(err) }
                 }, 5000);
             }
         }
