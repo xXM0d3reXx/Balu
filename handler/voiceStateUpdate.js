@@ -8,7 +8,7 @@ client.on("voiceStateUpdate", async (oldState, newState) => {
         try{
             await newState.guild.me.voice.setSuppressed(false)
         }catch (d) {
-			console.error(d)
+			console.log(d)
         }
     }
 })
