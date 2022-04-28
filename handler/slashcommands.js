@@ -4,14 +4,14 @@ const { number } = require('./config.json');
 const fs = require('node:fs');
 
 const commands = [];
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync('./testing').filter(file => file.endsWith('.js'));
 
 // Place your client and guild ids here
 const clientId = '925896859829035048';
 const guildId = '851071074736144415';
 
 for (const file of commandFiles) {
-    const command = require(`./commands/${file}`);
+    const command = require(`./testing/${file}`);
     commands.push(command.data.toJSON());
 }
 
