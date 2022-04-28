@@ -34,6 +34,13 @@ const client = new Discord.Client({
 // EXPORT CLIENT
 module.exports.Client = client
 
+const test = [];
+const rest = new REST({ version: '9' }).setToken(token);
+
+rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: test })
+    .then(() => console.log('Successfully registered application commands.'))
+    .catch(console.error);
+
 // HANDLER
 const handlerFiles = fs.readdirSync("./handler").filter(file => file.endsWith(".js"));
 for (const file of handlerFiles) {
