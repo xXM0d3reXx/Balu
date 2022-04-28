@@ -6,16 +6,10 @@ dotenv.config()
 const token = process.env.TOKEN
 
 const commands = [];
-const commandFiles = fs.readdirSync('./testing').filter(file => file.endsWith('.js'));
 
 // Place your client and guild ids here
 const clientId = '925896859829035048';
 const guildId = '851071074736144415';
-
-for (const file of commandFiles) {
-    const command = require(`../testing/${file}`);
-    commands.push(command.toJSON());
-}
 
 const rest = new REST({ version: '9' }).setToken(token);
 
