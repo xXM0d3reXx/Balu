@@ -19,6 +19,7 @@ const { MessageEmbed } = require("discord.js")
 
 // HANDLING
 client.on("messageCreate", async message => {
+    if (message.channel.id !== '851073890795913286') { return }
 
     if (message.author.bot) {
         return
